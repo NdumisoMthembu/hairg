@@ -1,0 +1,98 @@
+button {
+  border-radius: none;
+  border: none;
+  width: 100%;
+  padding: 1em;
+  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  // border-radius: 10em;
+
+
+  &.mat-primary {
+    background: $primary;
+    color: $white !important;
+  }
+
+  &.mat-flat-button.mat-primary[disabled] {
+    background-color: $grey;
+    color: #a5b1c2 !important;
+    font-weight: 500;
+  }
+
+  @media only screen and (max-width: 600px) {
+    &.mat-primary {
+      background: $primary;
+      width: 100%;
+    }
+  }
+}
+
+
+button {
+  &.mat-primary {
+    color: $white;
+
+    &:disabled {
+      background: $darker-grey;
+      cursor: no-drop;
+      color: $black
+    }
+  }
+}
+
+button.secondary {
+  background: $white;
+  border: 1.5px solid $black !important;
+  margin: .3rem 0;
+  color: $black !important;
+}
+
+.sec {
+  background: $secondary !important;
+}
+
+.tertiary {
+  background: $white !important;
+  color: $black !important;
+  border: 2px solid $black;
+
+}
+
+
+.save-all {
+  position: fixed;
+  padding: 1rem;
+  color: $white;
+  bottom: 11rem;
+  right: 19rem;
+  height: 2rem;
+}
+
+button.danger {
+  background: $danger;
+}
+
+
+.btn-uplaod{
+  width: 15em;
+  font-size: .8em;
+  padding: .6em 1em;
+  background: $white;
+  margin: .5em 0;
+  box-shadow: $box-shadow;
+  position: relative;
+  left: 0;
+  transition: .4s ease-in-out;
+  &:hover{
+    box-shadow: $box-shadow-hover;
+  }
+
+  .material-icons{
+    font-size: 1.4em;
+    top: .2em;
+    margin: 0;
+  }
+}

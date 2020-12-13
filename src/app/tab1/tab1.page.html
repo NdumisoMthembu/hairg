@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Discover hairstyles
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="parent" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> HAIRGICIA</ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+  <div class="main-list" *ngIf="products">
+
+    <div class="heading">
+      <h4 *ngIf="note">
+        <b>Note: </b>{{note}}
+      </h4>
+
+      <p>
+        Please choose a package and book now.
+      </p>
+    </div>
+    <div class="all-items">
+
+      <div class="list-items" *ngFor="let item of products" (click)="view(item)">
+
+        <div class="item">
+          <div class="icon" *ngIf="item.FeaturedImageUrl">
+            <div class="user-dp-image">
+              <img [src]="item.FeaturedImageUrl" alt="">
+            </div>
+          </div>
+
+          <div class="icon" *ngIf="!item.FeaturedImageUrl">
+            <div class="user-dp-image">
+              <img src="assets/images/icons/add.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <h1>
+            {{item.Name}}
+            <span class="code">
+              {{item.RegularPrice  | currency:'R'}} <i *ngIf="cat ==='laundry'">/ Kg</i>
+            </span>
+          </h1>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,57 @@
+$table-cols : 35% 15% 15% auto;
+
+.headers {
+  display: grid;
+  grid-template-columns: $table-cols;
+  border-right: 1px solid $cloud;
+  background: $primary;
+  padding: 0;
+  margin-top: 1em;
+
+  .item {
+    font-weight: 400;
+    color: $white;
+    padding-left: 0;
+    border-right: 2px solid $white;
+    padding: .5em 1em;
+  }
+}
+
+
+.line-items {
+  display: grid;
+  grid-template-columns: $table-cols;
+  border-bottom: 2px solid $cloud;
+
+  .item {
+    cursor: default;
+    border-right: 2px solid $cloud;
+    padding: .1em 1em;
+
+    &:first-child {
+      border-left: 2px solid $cloud;
+    }
+
+    h1 {
+      font-size: .9em;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  input {
+    width: 90%;
+    border: none;
+  }
+
+  p {
+    padding: .5em 0;
+  }
+
+  .material-icons {
+    margin-left: 1em;
+    cursor: pointer;
+    color: $danger;
+  }
+}

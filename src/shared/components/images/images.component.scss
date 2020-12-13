@@ -1,0 +1,28 @@
+@import '../../../assets/styles/color';
+
+.images {
+  display: grid;
+  grid-template-columns: 100%;
+
+  .image {
+    padding: 1rem;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+
+.file {
+  background: $white;
+  border-bottom: 1px solid $cloud;
+  padding: 1rem 0;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: $primary;
+
+  }
+}

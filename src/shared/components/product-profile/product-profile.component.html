@@ -1,0 +1,52 @@
+<div *ngIf="product" class="profile">
+  <div class="pic">
+    <div class="dp">
+      {{product.Name[0]}}{{product.Name[1]}}
+    </div>
+  </div>
+
+  <div class="details">
+    <h1>
+      {{product.Name}}
+      <span>{{product.Code}}</span>
+    </h1>
+
+    <p>
+      <!-- {{product.UnitPrice  | currency:'R'}} -->
+      <br>
+      <!-- In Stock: {{product.Quantity}} -->
+    </p>
+    <div class="data">
+      <span>
+        <select [(ngModel)]="product.StatusId" class="status" (change)="productStatusChanged(product)">
+          <option value="1">Active</option>
+          <option value="5">Pending payment</option>
+          <option value="4">Pending email verification</option>
+        </select>
+      </span>
+
+      <!-- <span class="pp" *ngIf="item.Billing && item.Billing[0].PayProof && item.StatusId == 5">
+          <span class="btn-pp" (click)="openPP(item.Billing[0].PayProof)">Proof of payment</span>
+        </span> -->
+    </div>
+  </div>
+</div>
+<div class="overlay" *ngIf="showModal"></div>
+
+
+<div class="modal" *ngIf="showConfirm">
+  <div class="close" (click)="cancelStatusChange()">
+    <span class="material-icons">
+      west
+    </span> {{modalHeading}}
+  </div>
+
+  <div class="form">
+    <p>
+      {{modalBody}}
+    </p>
+
+    <button mat-button color="primary" (click)="updateStatus()"> {{modalCTA}} </button>
+
+  </div>
+</div>

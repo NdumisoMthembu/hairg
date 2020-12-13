@@ -1,0 +1,168 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{heading}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{heading}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+<div class="main" *ngIf="user && !user.UserId && isSignUp">
+
+  <div class="form-item">
+    <label for="name">Customer Name *</label>
+    <input type="text" [(ngModel)]="user.Name" placeholder="e.g. John">
+  </div>
+  
+  <div class="form-item">
+    <label for="name">Customer Surname</label>
+    <input type="text" [(ngModel)]="user.Surname" placeholder="e.g. Mnisi">
+  </div>
+  <div class="form-item">
+    <label for="name">Phone Number</label>
+    <input type="text" [(ngModel)]="user.PhoneNumber" placeholder="e.g. 084 001 0100">
+  </div>
+  
+  <div class="form-item">
+    <label for="name">Customer Email</label>
+    <input type="text" [(ngModel)]="user.Email" placeholder="e.g. john.mnisi@gmail.com">
+  </div>
+  
+  <div class="form-item">
+    <label for="name">Password</label>
+    <input type="password" [(ngModel)]="user.Password" placeholder="e.g. john.mnisi@gmail.com">
+  </div>
+  
+  
+  <div class="form-item">
+    <div class="upload-preview">
+      <div class="upload">
+        <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
+          style="display:none;">
+        <button mat-button class="btn-uplaod" (click)="file.click()">
+          📷 Set customer image
+        </button>
+      </div>
+      <div class="preview">
+        <img *ngIf="user.Dp" [src]="user.Dp" alt="">
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <button mat-button class="mat-primary" [disabled]="!user.Name" type="button" (click)="save()">
+    Save your details
+  </button>
+  
+  
+  <button mat-button class="mat-primary primary"   type="button" (click)="dologin()">
+    Have the account, Login.
+  </button>
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+
+<div class="main" *ngIf="user && !isSignUp">
+
+  
+  <div class="form-item">
+    <label for="name">Email</label>
+    <input type="text" [(ngModel)]="user.Email" placeholder="e.g. john.mnisi@gmail.com">
+  </div>
+  
+  <div class="form-item">
+    <label for="name">Password</label>
+    <input type="password" [(ngModel)]="user.Password" placeholder="e.g. john.mnisi@gmail.com">
+  </div>
+
+  
+  
+  
+  
+  <button mat-button class="mat-primary" [disabled]="!user.Email || !user.Password" type="button" (click)="Login()">
+    Login
+  </button>
+  
+  
+  <button mat-button class="mat-primary primary"   type="button" (click)="doreg()">
+    I don't have the account, Sigin up.
+  </button>
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="main" *ngIf="user && user.UserId">
+
+  <div class="summary">
+    <div class="item">
+      <img *ngIf="user.Dp" [src]="user.Dp" alt="" class="user-dp">
+      <img *ngIf="!user.Dp" src="assets/images/common/user.svg" alt="" class="user-dp">
+    </div>
+    <div class="item">
+      <div class="name">
+        {{user.Name}}   {{user.Surname}} 
+      </div>
+    </div>
+    <div class="item">
+
+       Joined {{user.CreateDate | date: 'shortDate'}} 
+    </div>
+
+    <div class="item">
+      <div class="name">
+        {{user.Email}}  
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="name">
+        {{user.PhoneNumber}}   
+      </div>
+    </div>
+
+    <div class="item" (click)="back()">
+      <div class="name">
+      
+     <b>Discover services</b>
+      </div>
+    </div>
+  </div>
+  
+  
+  <button mat-button class="mat-primary primary"   type="button" (click)="back()">
+    Back to hairstyle services
+  </button>
+  
+  
+  
+  
+  
+</div>
+
+
+
+</ion-content>

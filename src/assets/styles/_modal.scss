@@ -1,0 +1,284 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.644);
+  // background: #f4f4f4cc;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  position: fixed;
+  background: $white;
+  z-index: 1001;
+  left: 36%;
+  width: 32%;
+  top: 13%;
+  max-height: 100vh;
+  // height: 59%;
+  padding: 2em;
+  box-sizing: border-box;
+
+  .head {
+
+    display: grid;
+    grid-template-columns: 90% auto;
+    color: $black;
+    border-bottom: 2px solid $cloud;
+    margin-bottom: 1em;
+
+    h1 {
+      margin: 0;
+      padding: 0 1em;
+      font-size: 1em;
+      text-align: left;
+      font-weight: 900;
+    }
+
+    .material-icons {
+      position: relative;
+      top: 0;
+      cursor: pointer;
+    }
+  }
+
+  .body {
+    padding: .5em;
+
+    p {
+      margin: 1em 0;
+      padding: 0;
+    }
+  }
+
+  .cta {
+    text-align: center;
+    padding: 1em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #009CD7;
+    width: 1px;
+  }
+
+  form {
+    width: 40%;
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    // height: 100vh;
+    max-height: 100vh;
+  }
+
+  .main-list {
+    background: none;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+
+  p {
+    padding: 2rem;
+  }
+
+  .editor {
+    p {
+      padding: 0;
+      text-align: left;
+      margin: .3rem;
+    }
+
+    h1 {
+      text-align: left;
+      margin: .3rem;
+    }
+  }
+
+  label,
+  input,
+  textarea,
+  select {
+    display: block;
+    margin: .5 0rem;
+  }
+
+  label {
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: .3rem;
+    font-size: 1.1rem;
+
+    span {
+      display: block;
+      font-weight: 500;
+      font-size: .8rem;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 1rem;
+    width: 97.5%;
+    margin: 1rem 0;
+    margin-top: 0;
+  }
+
+  button {
+    @media only screen and (max-width: 600px) {
+      position: fixed;
+      left: 1rem;
+      bottom: 2rem;
+      width: 92% !important;
+      z-index: 10000;
+    }
+  }
+
+  .secondary {
+    @media only screen and (max-width: 600px) {
+      bottom: 6rem;
+    }
+  }
+
+  .btn-float {
+    position: fixed;
+    z-index: 1000;
+    right: 22%;
+    bottom: 8%;
+    width: 10rem !important;
+  }
+
+  .col-1-of-2 {
+
+    input,
+    textarea,
+    select {
+      width: 80%;
+    }
+  }
+
+  select {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 600px) {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    top: 0;
+  }
+}
+
+
+
+
+
+.success-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: $black;
+  z-index: 1000000;
+  top: 0;
+  overflow-y: scroll;
+  animation: moveInButton .5s ease-in-out;
+
+
+  h1 {
+    font-size: 1em;
+    text-align: center;
+    padding: 1em;
+    color: $white;
+
+    .check {
+      font-size: 6em;
+    }
+  }
+
+  .summary {
+    background: $white;
+    padding: 1em;
+    width: 92%;
+    border-radius: .5em;
+    margin: 1em auto;
+
+ 
+
+
+    .item {
+      border-bottom: 1px solid $cloud;
+      text-align: center;
+      padding: 1em;
+
+      .material-icons {
+        top: 0.3rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: $primary;
+        font-weight: 600;
+      }
+
+      .cancel {
+        color: $danger;
+      }
+
+      .checkout {
+        color: $secondary;
+      }
+
+      .info {
+        color: $info;
+      }
+      select {
+        text-align: center;
+        width: 60%;
+        display: block;
+        margin: .5em auto;
+        font-weight: 600;
+        option{
+          text-align: center;
+        }
+      }
+    }
+
+    .product-item {
+      display: grid;
+      grid-template-columns: 80% auto;
+      text-align: left;
+
+      img {
+        width: 3em;
+        border-radius: .2em;
+      }
+
+      .action {
+        text-align: right;
+        color: $danger;
+      }
+    }
+
+  }
+}
+
+.done-model {
+  padding-top: 8em;
+
+  button {
+    width: 80%;
+    margin: 3em auto;
+    display: block;
+    position: relative;
+  }
+}

@@ -1,0 +1,36 @@
+
+.profile {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 15% 40% auto;
+
+  .dp {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100%;
+    font-size: 3rem;
+    padding: 1em .5em;
+  }
+
+  .details {
+    h1 {
+      font-weight: 300;
+      font-size: 2rem;
+
+      span {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.status {
+  padding: .3rem 1rem;
+  background: $info;
+  color: $white;
+  border-radius: .7rem;
+  border: none;
+
+}

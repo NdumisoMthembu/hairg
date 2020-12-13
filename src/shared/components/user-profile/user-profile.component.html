@@ -1,0 +1,50 @@
+<div *ngIf="user" class="profile">
+  <div class="pic">
+    <div class="dp">
+      {{user.Name[0]}}{{user.Surname[0]}}
+    </div>
+  </div>
+
+  <div class="details">
+    <h1>
+      {{user.Name}} {{user.Surname}}
+      <!-- <span>{{user.Grade?.Name}}</span> -->
+    </h1>
+
+    <p>
+      {{user.Email}}
+      <br>
+      {{user.PhoneNumber}}
+    </p>
+
+    <!-- <div class="data">
+        <span>
+          <select [(ngModel)]="user.StatusId" class="status" (change)="learnerStatusChanged(user)">
+            <option value="1">Active</option>
+            <option value="5">Pending payment</option>
+            <option value="4">Pending email verification</option>
+          </select>
+        </span>
+
+    </div> -->
+  </div>
+</div>
+<div class="overlay" *ngIf="showModal"></div>
+
+
+<div class="modal" *ngIf="showConfirm">
+  <div class="close" (click)="cancelStatusChange()">
+    <span class="material-icons">
+      west
+    </span> {{modalHeading}}
+  </div>
+
+  <div class="form">
+    <p>
+      {{modalBody}}
+    </p>
+
+    <button mat-button color="primary" (click)="updateStatus()"> {{modalCTA}} </button>
+
+  </div>
+</div>

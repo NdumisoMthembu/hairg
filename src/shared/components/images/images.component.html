@@ -1,0 +1,25 @@
+<div class="images">
+  <div class="image" *ngFor="let image of images; let i = index">
+    <div class="file">
+      <a [href]="image.Url" target="_blank">
+        Assignment Attachment {{i+1}}
+      </a>
+    </div>
+    <!-- <img *ngIf="image.Ext != 'pdf' || image.Ext != 'doc' || image.Ext != 'doxc'" [src]="image.Url" alt="">
+    <div class="" *ngIf="image.Ext == 'pdf' || image.Ext == 'doc' || image.Ext == 'doxc'">
+      {{image.Ext}}
+    </div> -->
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)" style="display:none;">
+    <button mat-button class="secondary" (click)="file.click()">
+      <span class="material-icons">
+        attach_file
+      </span>
+      Add Files
+    </button>
+  </div>
+</div>
