@@ -1,0 +1,783 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 14, 2020 at 07:05 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hairgiciadb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `BookingId` varchar(225) NOT NULL,
+  `UserId` varchar(225) NOT NULL,
+  `BookingDate` varchar(50) NOT NULL,
+  `StartTime` varchar(100) NOT NULL,
+  `FinishTime` varchar(100) NOT NULL,
+  `TimeId` varchar(100) NOT NULL,
+  `Place` varchar(500) DEFAULT NULL,
+  `TotalAmount` decimal(10,0) DEFAULT NULL,
+  `Status` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`BookingId`, `UserId`, `BookingDate`, `StartTime`, `FinishTime`, `TimeId`, `Place`, `TotalAmount`, `Status`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('f0fe65fd-3dd0-11eb-9164-48f17f8d4d88', 'd61f1c2a-3dd0-11eb-9164-48f17f8d4d88', '2020-12-11', '12:00 PM', '13:30 PM', '12:00 PM - 13:30 PM', 'Zoweh office', '270', 'Upcoming', '2020-12-14 07:55:17', 'd61f1c2a-3dd0-11eb-9164-48f17f8d4d88', '2020-12-14 07:55:17', 'd61f1c2a-3dd0-11eb-9164-48f17f8d4d88', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookingitem`
+--
+
+CREATE TABLE `bookingitem` (
+  `BookingItemId` varchar(225) NOT NULL,
+  `BookingId` varchar(225) NOT NULL,
+  `ServiceId` varchar(225) NOT NULL,
+  `ServiceName` varchar(400) NOT NULL,
+  `ServicePrice` decimal(10,0) NOT NULL,
+  `ServiceQuantity` decimal(10,0) NOT NULL,
+  `ServiceTotal` decimal(10,0) DEFAULT NULL,
+  `Status` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bookingitem`
+--
+
+INSERT INTO `bookingitem` (`BookingItemId`, `BookingId`, `ServiceId`, `ServiceName`, `ServicePrice`, `ServiceQuantity`, `ServiceTotal`, `Status`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('f0ff21e5-3dd0-11eb-9164-48f17f8d4d88', 'f0fe65fd-3dd0-11eb-9164-48f17f8d4d88', 'c4bc0044-2d1b-11eb-a7ff-025041000001', 'Straight up', '270', '1', '270', 'Up coming', '2020-12-14 07:55:17', '', '2020-12-14 07:55:17', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `CategoryId` varchar(225) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `ParentId` varchar(50) DEFAULT NULL,
+  `CategoryType` varchar(100) DEFAULT NULL,
+  `CompanyType` varchar(50) NOT NULL,
+  `Description` text NOT NULL,
+  `ImageUrl` varchar(500) DEFAULT NULL,
+  `IsDeleted` tinyint(1) NOT NULL DEFAULT 0,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `CompanyId` varchar(255) NOT NULL,
+  `Name` varchar(55) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `CompanyType` varchar(50) DEFAULT NULL,
+  `Dp` text DEFAULT NULL,
+  `IsDeleted` tinyint(1) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) DEFAULT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) DEFAULT NULL,
+  `StatusId` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companycategory`
+--
+
+CREATE TABLE `companycategory` (
+  `Id` int(10) NOT NULL,
+  `CompanyId` varchar(225) NOT NULL,
+  `CategoryId` varchar(225) NOT NULL,
+  `Name` varchar(225) NOT NULL,
+  `Description` varchar(225) NOT NULL,
+  `CategoryType` varchar(50) DEFAULT NULL,
+  `ParentId` int(10) NOT NULL,
+  `ImageUrl` varchar(225) NOT NULL,
+  `IsDeleted` tinyint(1) DEFAULT 0,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companyvariation`
+--
+
+CREATE TABLE `companyvariation` (
+  `CompanyVariationId` int(11) NOT NULL,
+  `CompanyId` varchar(225) NOT NULL,
+  `VariationId` int(10) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
+  `IsDeleted` tinyint(1) NOT NULL DEFAULT 0,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companyvariationoption`
+--
+
+CREATE TABLE `companyvariationoption` (
+  `Id` int(11) NOT NULL,
+  `CompanyVariationId` int(10) NOT NULL,
+  `CompanyId` varchar(225) NOT NULL,
+  `VariationOptionId` int(10) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `ImageId` varchar(225) NOT NULL,
+  `SmallImage` text DEFAULT NULL,
+  `LargeImage` text DEFAULT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job`
+--
+
+CREATE TABLE `job` (
+  `JobId` varchar(225) NOT NULL,
+  `CompanyId` varchar(225) DEFAULT 'NULL',
+  `CustomerId` varchar(225) DEFAULT 'NULL',
+  `CustomerName` varchar(500) DEFAULT NULL,
+  `JobNo` varchar(100) NOT NULL,
+  `Tittle` varchar(100) NOT NULL,
+  `Description` text DEFAULT 'NULL',
+  `TotalCost` varchar(100) NOT NULL,
+  `TotalDays` varchar(100) NOT NULL,
+  `StartDate` datetime DEFAULT NULL,
+  `DueDate` datetime DEFAULT NULL,
+  `Status` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobwork`
+--
+
+CREATE TABLE `jobwork` (
+  `JobWorkId` varchar(225) NOT NULL,
+  `JobId` varchar(225) NOT NULL,
+  `Tittle` varchar(100) NOT NULL,
+  `Description` text DEFAULT NULL,
+  `TotalCost` varchar(100) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `TotalHours` varchar(100) NOT NULL,
+  `StartDate` datetime DEFAULT NULL,
+  `DueDate` datetime DEFAULT NULL,
+  `Status` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobworkuser`
+--
+
+CREATE TABLE `jobworkuser` (
+  `JobWorkUserId` varchar(225) NOT NULL,
+  `JobWorkId` varchar(225) NOT NULL,
+  `JobId` varchar(225) NOT NULL,
+  `UserId` varchar(225) NOT NULL,
+  `Status` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderproduct`
+--
+
+CREATE TABLE `orderproduct` (
+  `Id` varchar(225) NOT NULL,
+  `OrderId` varchar(225) NOT NULL,
+  `ProductId` varchar(225) NOT NULL,
+  `CompanyId` varchar(225) DEFAULT NULL,
+  `ProductName` text DEFAULT NULL,
+  `UnitPrice` varchar(10) DEFAULT NULL,
+  `Quantity` varchar(225) NOT NULL,
+  `SubTotal` varchar(10) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `OrdersId` varchar(225) NOT NULL,
+  `OrderNo` varchar(50) DEFAULT NULL,
+  `CompanyId` varchar(225) NOT NULL,
+  `CustomerId` varchar(225) DEFAULT NULL,
+  `AddressId` varchar(225) NOT NULL,
+  `Notes` text NOT NULL,
+  `OrderType` varchar(100) NOT NULL,
+  `Total` varchar(10) NOT NULL,
+  `Paid` varchar(10) DEFAULT '0.00',
+  `Due` varchar(10) DEFAULT NULL,
+  `InvoiceDate` text DEFAULT NULL,
+  `DueDate` text DEFAULT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `Status` varchar(50) DEFAULT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `ProductId` varchar(225) NOT NULL,
+  `CompanyId` varchar(225) DEFAULT 'NULL',
+  `Name` varchar(100) NOT NULL,
+  `RegularPrice` decimal(10,0) NOT NULL,
+  `PriceFrom` float DEFAULT 0,
+  `PriceTo` float DEFAULT 0,
+  `TotalStock` int(11) DEFAULT 0,
+  `Description` text DEFAULT 'NULL',
+  `Code` varchar(50) DEFAULT 'NULL',
+  `CatergoryId` varchar(225) DEFAULT NULL,
+  `ParentCategoryId` varchar(225) DEFAULT NULL,
+  `CategoryName` varchar(100) DEFAULT 'NULL',
+  `ParentCategoryName` varchar(300) DEFAULT NULL,
+  `ParentCategoryGuid` varchar(225) DEFAULT NULL,
+  `CategoryGuid` varchar(225) DEFAULT NULL,
+  `ProductSlug` varchar(400) DEFAULT NULL,
+  `FeaturedImageUrl` text NOT NULL,
+  `IsJustInTime` tinyint(1) NOT NULL,
+  `Notes` text DEFAULT NULL,
+  `ProductType` varchar(100) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`ProductId`, `CompanyId`, `Name`, `RegularPrice`, `PriceFrom`, `PriceTo`, `TotalStock`, `Description`, `Code`, `CatergoryId`, `ParentCategoryId`, `CategoryName`, `ParentCategoryName`, `ParentCategoryGuid`, `CategoryGuid`, `ProductSlug`, `FeaturedImageUrl`, `IsJustInTime`, `Notes`, `ProductType`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('15d07ccc-3dcd-11eb-9164-48f17f8d4d88', 'hairgicia', 'Bondly and sh***', '500', 0, 0, 0, '', '', '0', '0', 'Show to customer', 'Saloon', NULL, NULL, 'hairgicia--bondly-and-sh***', 'http://localhost:8200/hairgicia-api/api/upload/uploads/160792365815-most-charming-blonde-hairstyles-for-2018-1.jpg', 0, '', '', '2020-12-14 07:27:40', 'hairgicia', '2020-12-14 07:27:40', 'hairgicia', 1),
+('1c68675d-2d1c-11eb-a7ff-025041000001', 'hairgicia', 'Straight back small', '220', 0, 0, 0, '', 'P0011', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p0011-straight-back-small', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088422Straight-back-small.png', 0, '', '', '2020-11-23 01:40:24', 'hairgicia', '2020-11-23 01:40:24', 'hairgicia', 1),
+('626776d2-2d1c-11eb-a7ff-025041000001', 'hairgicia', 'Straight back(with braids)', '370', 0, 0, 0, '', 'P0012', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'hairgicia--straight-back(with-braids)', 'http://localhost:8200/hairgicia-api/api/upload/uploads/1607925599main-logo-tybo.png', 0, '', '', '2020-11-23 01:42:21', 'hairgicia', '2020-12-14 08:00:05', 'hairgicia', 1),
+('6507ca6b-3dcd-11eb-9164-48f17f8d4d88', 'hairgicia', 'Bondy cool', '500', 0, 0, 0, '', '', '0', '0', 'Show to customer', 'Saloon', NULL, NULL, 'hairgicia--bondy-cool', 'http://localhost:8200/hairgicia-api/api/upload/uploads/1607923791Long-Wavy-Blonde-Hair.jpg', 0, '', '', '2020-12-14 07:29:53', 'hairgicia', '2020-12-14 07:29:53', 'hairgicia', 1),
+('6fa7d21f-3dcc-11eb-9164-48f17f8d4d88', '', 'hahhaha', '500', 0, 0, 0, '', '', '0', '0', 'Show to customer', 'Saloon', NULL, NULL, 'hairgicia--hahhaha', 'http://localhost:8200/hairgicia-api/api/upload/uploads/1607923376maxresdefault.png', 0, '', '', '2020-12-14 07:23:02', '', '2020-12-14 07:23:02', '', 1),
+('80078db8-2d1b-11eb-a7ff-025041000001', 'hairgicia', 'Big', '200', 0, 0, 0, '', 'P009', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p009-big', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088160big.png', 0, '', '', '2020-11-23 01:36:01', 'hairgicia', '2020-11-23 01:36:01', 'hairgicia', 1),
+('907a73f8-2d1c-11eb-a7ff-025041000001', 'hairgicia', 'Straight sides', '270', 0, 0, 0, '', 'P0013', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p0013-straight-sides', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088617Straight-sides.png', 0, '', '', '2020-11-23 01:43:38', 'hairgicia', '2020-11-23 01:43:38', 'hairgicia', 1),
+('b7310de7-2d1c-11eb-a7ff-025041000001', 'hairgicia', 'Blocks', '100', 0, 0, 0, '', 'P0014', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p0014-blocks', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088682Blocks.png', 0, '', '', '2020-11-23 01:44:43', 'hairgicia', '2020-11-23 01:44:43', 'hairgicia', 1),
+('c4bc0044-2d1b-11eb-a7ff-025041000001', 'hairgicia', 'Straight up', '270', 0, 0, 0, '', 'P0010', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p0010-straight-up', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088275Straight-up.png', 0, '', '', '2020-11-23 01:37:57', 'hairgicia', '2020-11-23 01:37:57', 'hairgicia', 1),
+('d43a1bd6-3dcc-11eb-9164-48f17f8d4d88', 'hairgicia', 'Blond', '550', 0, 0, 0, '', '', '0', '0', 'Show to customer', 'Saloon', NULL, NULL, 'hairgicia--blond', 'http://localhost:8200/hairgicia-api/api/upload/uploads/16079235472-short-haircut.com-straight-hair-0903201920082.jpg', 0, '', '', '2020-12-14 07:25:50', 'hairgicia', '2020-12-14 07:25:50', 'hairgicia', 1),
+('f8b77448-2d1a-11eb-a7ff-025041000001', 'hairgicia', 'Box Braids', '300', 0, 0, 0, '', 'P008', '0', '0', 'Straight back', 'Saloon', NULL, NULL, 'zoweh-p008-box-braids', 'http://localhost:8200/api-zoweh/api/upload/uploads/1606088171boxbraids.png', 0, '', '', '2020-11-23 01:32:14', 'hairgicia', '2020-11-23 01:36:12', 'hairgicia', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productcombination`
+--
+
+CREATE TABLE `productcombination` (
+  `ProductCombinationId` int(10) NOT NULL,
+  `CombinationString` text NOT NULL,
+  `CombinationStringId` text NOT NULL,
+  `ProductId` varchar(225) NOT NULL,
+  `SKU` varchar(225) DEFAULT NULL,
+  `Price` varchar(225) NOT NULL,
+  `AvailabelStock` varchar(225) NOT NULL,
+  `FeaturedImage` text NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productimage`
+--
+
+CREATE TABLE `productimage` (
+  `ProductImageId` int(10) NOT NULL,
+  `ProductVariationOptionId` varchar(225) NOT NULL,
+  `Url` text NOT NULL,
+  `IsFeatured` tinyint(1) DEFAULT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productstock`
+--
+
+CREATE TABLE `productstock` (
+  `ProductStockId` int(10) NOT NULL,
+  `ProductId` varchar(225) NOT NULL,
+  `ProductCombinationId` varchar(225) NOT NULL,
+  `TotalStock` varchar(225) NOT NULL,
+  `UnitPrice` varchar(225) NOT NULL,
+  `TotalPrice` varchar(225) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productvariation`
+--
+
+CREATE TABLE `productvariation` (
+  `Id` int(11) NOT NULL,
+  `ProductId` varchar(225) NOT NULL,
+  `CompanyVariationId` varchar(225) NOT NULL,
+  `VariationName` varchar(225) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productvariationoption`
+--
+
+CREATE TABLE `productvariationoption` (
+  `Id` int(225) NOT NULL,
+  `ProductVariationId` varchar(225) NOT NULL,
+  `CompanyVariationId` int(11) NOT NULL,
+  `CompanyVariationOptionId` varchar(225) NOT NULL,
+  `VariationName` varchar(225) NOT NULL,
+  `OptionName` varchar(225) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timeslot`
+--
+
+CREATE TABLE `timeslot` (
+  `TimeSlotId` int(10) NOT NULL,
+  `StartTime` varchar(10) NOT NULL,
+  `FinishTime` varchar(10) NOT NULL,
+  `TimeId` varchar(50) NOT NULL,
+  `MaxCapacity` int(10) NOT NULL DEFAULT 2,
+  `CurrentCapacity` int(10) NOT NULL DEFAULT 0,
+  `CompanyId` varchar(225) NOT NULL DEFAULT 'zoweh',
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `timeslot`
+--
+
+INSERT INTO `timeslot` (`TimeSlotId`, `StartTime`, `FinishTime`, `TimeId`, `MaxCapacity`, `CurrentCapacity`, `CompanyId`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+(1, '9:00 AM', '10:30 AM', '9:00 AM - 10:30 AM', 10, 2, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-11 10:13:01', 'sys', 1),
+(2, '10:30 AM', '12:00 PM', '10:30 AM - 12:00 PM', 10, 0, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-11 09:49:12', 'sys', 1),
+(3, '12:00 PM', '13:30 PM', '12:00 PM - 13:30 PM', 10, 1, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-14 07:55:17', 'sys', 1),
+(4, '13:30 PM', '15:00 PM', '13:30 PM - 15:00 PM', 10, 0, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-11 09:49:19', 'sys', 1),
+(5, '15:00 PM', '16:30 PM', '15:00 PM - 16:30 PM', 10, 3, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-11 10:03:42', 'sys', 1),
+(6, '16:30 PM', '18:00 PM', '16:30 PM - 18:00 PM', 10, 0, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-10 07:07:26', 'sys', 1),
+(7, '18:00 PM', '19:30 PM', '18:00 PM - 19:30 PM', 10, 0, 'zoweh', '2020-12-10 07:21:40', 'sys', '2020-12-10 07:07:26', 'sys', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `UserId` varchar(225) NOT NULL,
+  `CompanyId` varchar(225) DEFAULT NULL,
+  `UserType` varchar(30) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Surname` varchar(50) NOT NULL,
+  `Email` varchar(500) NOT NULL,
+  `PhoneNumber` varchar(225) DEFAULT NULL,
+  `Password` varchar(100) NOT NULL,
+  `Dp` text DEFAULT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL,
+  `UserToken` varchar(225) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`UserId`, `CompanyId`, `UserType`, `Name`, `Surname`, `Email`, `PhoneNumber`, `Password`, `Dp`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`, `UserToken`) VALUES
+('1ca7c738-27f2-11eb-9dfe-025041000001', 'zoweh', 'Admin', 'Sihle', 'Mhlongo', 'admin@hairgicia.co.za', '+27842529472', 'admin@hairgicia.co.za', NULL, '2020-11-16 11:57:18', 'System', '2020-11-16 11:57:18', 'System', 4, '5941c0825fad4921989e0a62bb8c7c0f'),
+('d61f1c2a-3dd0-11eb-9164-48f17f8d4d88', 'hairgicia', 'Customer', 'Zinhle', 'Zulu', 'z2@mail.com', '45654545', 'z2@mail.com', '', '2020-12-14 07:54:31', 'hairgicia', '2020-12-14 07:54:31', 'hairgicia', 1, '59d81016a61346202e5f2494fba5f097');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variation`
+--
+
+CREATE TABLE `variation` (
+  `VariationId` int(10) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `CompanyType` varchar(50) DEFAULT NULL,
+  `Description` text NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `variationoption`
+--
+
+CREATE TABLE `variationoption` (
+  `VariationoptionId` int(10) NOT NULL,
+  `VariationId` int(10) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`BookingId`);
+
+--
+-- Indexes for table `bookingitem`
+--
+ALTER TABLE `bookingitem`
+  ADD PRIMARY KEY (`BookingItemId`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`CategoryId`);
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`CompanyId`);
+
+--
+-- Indexes for table `companycategory`
+--
+ALTER TABLE `companycategory`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `companyvariation`
+--
+ALTER TABLE `companyvariation`
+  ADD PRIMARY KEY (`CompanyVariationId`);
+
+--
+-- Indexes for table `companyvariationoption`
+--
+ALTER TABLE `companyvariationoption`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `job`
+--
+ALTER TABLE `job`
+  ADD PRIMARY KEY (`JobId`);
+
+--
+-- Indexes for table `jobwork`
+--
+ALTER TABLE `jobwork`
+  ADD PRIMARY KEY (`JobWorkId`);
+
+--
+-- Indexes for table `jobworkuser`
+--
+ALTER TABLE `jobworkuser`
+  ADD PRIMARY KEY (`JobWorkUserId`);
+
+--
+-- Indexes for table `orderproduct`
+--
+ALTER TABLE `orderproduct`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`OrdersId`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`ProductId`);
+
+--
+-- Indexes for table `productcombination`
+--
+ALTER TABLE `productcombination`
+  ADD PRIMARY KEY (`ProductCombinationId`);
+
+--
+-- Indexes for table `productimage`
+--
+ALTER TABLE `productimage`
+  ADD PRIMARY KEY (`ProductImageId`);
+
+--
+-- Indexes for table `productstock`
+--
+ALTER TABLE `productstock`
+  ADD PRIMARY KEY (`ProductStockId`);
+
+--
+-- Indexes for table `productvariation`
+--
+ALTER TABLE `productvariation`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `productvariationoption`
+--
+ALTER TABLE `productvariationoption`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `timeslot`
+--
+ALTER TABLE `timeslot`
+  ADD PRIMARY KEY (`TimeSlotId`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`UserId`);
+
+--
+-- Indexes for table `variation`
+--
+ALTER TABLE `variation`
+  ADD PRIMARY KEY (`VariationId`);
+
+--
+-- Indexes for table `variationoption`
+--
+ALTER TABLE `variationoption`
+  ADD PRIMARY KEY (`VariationoptionId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `companycategory`
+--
+ALTER TABLE `companycategory`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `companyvariation`
+--
+ALTER TABLE `companyvariation`
+  MODIFY `CompanyVariationId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `companyvariationoption`
+--
+ALTER TABLE `companyvariationoption`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productcombination`
+--
+ALTER TABLE `productcombination`
+  MODIFY `ProductCombinationId` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productimage`
+--
+ALTER TABLE `productimage`
+  MODIFY `ProductImageId` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productstock`
+--
+ALTER TABLE `productstock`
+  MODIFY `ProductStockId` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productvariation`
+--
+ALTER TABLE `productvariation`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `productvariationoption`
+--
+ALTER TABLE `productvariationoption`
+  MODIFY `Id` int(225) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `timeslot`
+--
+ALTER TABLE `timeslot`
+  MODIFY `TimeSlotId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `variation`
+--
+ALTER TABLE `variation`
+  MODIFY `VariationId` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `variationoption`
+--
+ALTER TABLE `variationoption`
+  MODIFY `VariationoptionId` int(10) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
