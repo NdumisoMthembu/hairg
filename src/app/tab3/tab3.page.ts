@@ -80,6 +80,9 @@ export class Tab3Page {
   back() {
     this.router.navigate([``]);
   }
+  dashboard() {
+    this.router.navigate([`dashboard`]);
+  }
 
   dologin() {
     this.isSignUp = false;
@@ -108,6 +111,12 @@ export class Tab3Page {
         this.showLoader = false;
       }
     });
+  }
+
+  logout() {
+    this.user = null;
+    this.accountService.updateUserState(this.user);
+    this.router.navigate(['']);
   }
 
 }

@@ -1,20 +1,16 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserModel, Email, User } from 'src/models';
+import { User } from 'src/models';
 import { Booking } from 'src/models/booking.model';
-import { AccountService, EmailService } from 'src/services';
+import { AccountService } from 'src/services';
 import { BookingService } from 'src/services/booking.service';
-import { CUSTOMER, SYSTEM } from 'src/shared/constants';
-import { IS_DELETED_FALSE, AWAITING_ACTIVATION } from 'src/shared/status.const';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-bookings',
+  templateUrl: './bookings.page.html',
+  styleUrls: ['./bookings.page.scss'],
 })
-export class Tab2Page {
-
+export class BookingsPage implements OnInit {
   bookings: Booking[];
   user: User;
 
@@ -27,7 +23,7 @@ export class Tab2Page {
   ngOnInit() {
     this.bookings = this.bookingService.currentBookingListValue;
     this.user = this.accountService.currentUserValue;
-    this.bookingService.getBookingsByUserIdSync(this.user.UserId).subscribe(data => {
+    this.bookingService.getBookingsByUserIdSync('all').subscribe(data => {
       if (data) {
         this.bookings = data;
       }
@@ -39,8 +35,5 @@ export class Tab2Page {
   }
 
   cancel(){}
-
-
-
 
 }

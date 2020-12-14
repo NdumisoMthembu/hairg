@@ -1,0 +1,169 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>book</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="product" class="all">
+    <div class="product">
+      <div class="main-image">
+        <img [src]="product.FeaturedImageUrl" alt="">
+        <button class="back" (click)="back()">
+          <span class="material-icons">
+            chevron_left
+          </span>
+        </button>
+      </div>
+      <div class="product-information">
+        <h1 class="h1">
+          {{product.Name}}
+  
+          <span class="price">
+            {{product.RegularPrice | currency:'R'}}
+          </span>
+        </h1>
+  
+        <div class="booking" *ngIf="booking.BookingDate && booking.TimeId">
+          <div class="action">
+            <button class="mat-primary add-to-cart" mat-button color="primary" (click)="addToCart()">
+              Add this service to booking
+            </button>
+          </div>
+  
+        </div>
+  
+  
+        <div *ngIf="showBookingDateTime" class="initaite-booking">
+          <!-- <p>
+          <span class="material-icons">
+            location_on
+          </span>
+          <a href="https://goo.gl/maps/Ab6cGS5XVkUFB68J8" >Zoweh directions</a>
+        </p> -->
+  
+          <!-- Book now pay at the saloon -->
+  
+          <div class="booking">
+            <div class="input">
+              <label for="">Choose booking date</label>
+              <input [(ngModel)]="booking.BookingDate" type="date">
+            </div>
+          </div>
+  
+          <div class="booking" *ngIf="booking.BookingDate">
+            <div class="input">
+              <label for="">Available time slots</label>
+              <div class="times">
+                <div class="time" *ngFor="let item of times; let i = index" (click)="selectTime(item)"
+                  [ngClass]="item.Class">
+                  {{item.TimeId}}
+                </div>
+              </div>
+            </div>
+  
+  
+            <div class="action">
+              <button class="mat-primary add-to-cart" [disabled]="!booking.BookingDate || !booking.TimeId" mat-button
+                color="primary" (click)="book()">
+                Book an appointment
+              </button>
+            </div>
+  
+  
+          </div>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <div class="overlay" *ngIf="showModal" (click)="closeModal()"></div>
+  <div class="mosdal" *ngIf="showModal">
+    <div class="close" (click)="closeModal()">
+
+      {{modalHeading}}
+    </div>
+  
+    <div class="body">
+      <app-sign-up-modal (userLoggedInDone)="userLoggedInDone($event)"></app-sign-up-modal>
+    </div>
+  </div>
+  
+  <div *ngIf="showSuccess" class="success-modal">
+
+    <h4>
+      {{product.Name}} added to booking successfully.
+    </h4>
+    <div class="summary">
+      <div class="item product-item" *ngFor="let item of booking.BookingItems; let i = index">
+        <div class="name">
+          {{item.ServiceName}} - {{item.ServicePrice  | currency:'R'}}
+        </div>
+  
+        <div class="action" (click)="deleteItem(item, i)">
+         
+          Del
+        </div>
+      </div>
+    </div>
+    <div class="summary">
+      <div class="item">
+     
+     Date & Time :   {{booking.BookingDate | date: 'shortDate'}} | {{booking.TimeId}}
+      </div>
+  
+  
+      <div class="item">
+  
+        
+        {{booking.TotalAmount  | currency:'R'}}
+      </div>
+  
+    
+  
+      <div class="item">
+  
+        <a class="cancel" (click)="cancel()">
+        
+          Cancel booking
+        </a>
+      </div>
+  
+  
+      <div class="item">
+  
+        <a class="info" (click)="back()">
+      
+          Add another service
+        </a>
+      </div>
+  
+  
+      <div class="item">
+  
+        <a class="checkout" (click)="checkout()">
+    
+          Checkout
+        </a>
+      </div>
+    </div>
+  
+  
+  
+  </div>
+  
+  <div class="success-modal done-model" *ngIf="showDone">
+    <h1>
+      Your booking was successful
+    </h1>
+  
+    <button (click)="back()">Home</button>
+    <button (click)="bookings()">Go to my bookings</button>
+  </div>
+  
+</ion-content>

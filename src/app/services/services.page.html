@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Services</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-list" *ngIf="products && list">
+
+    <button mat-button class="mat-primary primary" type="button" (click)="add()">
+      Add a service
+    </button>
+
+    <div class="heading">
+      <h4 *ngIf="note">
+        <b>Note: </b>{{note}}
+      </h4>
+
+      <p>
+        Please choose a package and book now.
+      </p>
+    </div>
+    <div class="all-items">
+
+      <div class="list-items" *ngFor="let item of products" (click)="view(item)">
+
+        <div class="item">
+          <div class="icon" *ngIf="item.FeaturedImageUrl">
+            <div class="user-dp-image">
+              <img [src]="item.FeaturedImageUrl" alt="">
+            </div>
+          </div>
+
+          <div class="icon" *ngIf="!item.FeaturedImageUrl">
+            <div class="user-dp-image">
+              <img src="assets/images/icons/add.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <h1>
+            {{item.Name}}
+            <span class="code">
+              {{item.RegularPrice  | currency:'R'}} <i *ngIf="cat ==='laundry'">/ Kg</i>
+            </span>
+          </h1>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="" *ngIf="isAdd">
+
+
+    <div class="form-item">
+      <label for="name">Service Name *</label>
+      <input type="text" [(ngModel)]="service.Name" placeholder="Snoopy">
+    </div>
+
+
+    <div class="form-item">
+      <label for="name">Service Price *</label>
+      <input type="text" [(ngModel)]="service.RegularPrice" placeholder="Snoopy">
+    </div>
+
+   
+  
+
+
+  
+
+
+    <div class="form-item">
+      <div class="upload-preview">
+        <div class="upload">
+          <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
+            style="display:none;">
+          <button mat-button class="btn-uplaod" (click)="file.click()">
+            📷 Set service image
+          </button>
+        </div>
+        <div class="preview">
+          <img *ngIf="service.FeaturedImageUrl" [src]="service.FeaturedImageUrl" alt="">
+        </div>
+      </div>
+    </div>
+
+
+    <button mat-button class="mat-primary secondary" type="button" (click)="add()">
+      Cancel
+    </button>
+
+    <button mat-button class="mat-primary primary" type="button" (click)="saveProduct()">
+      Save service
+    </button>
+  </div>
+</ion-content>

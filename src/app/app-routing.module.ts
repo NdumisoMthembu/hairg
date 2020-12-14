@@ -14,6 +14,26 @@ const routes: Routes = [
     path: 'add-update-services',
     loadChildren: () => import('./add-update-services/add-update-services.module').then( m => m.AddUpdateServicesPageModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dasboard/dasboard.module').then( m => m.DasboardPageModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./services/services.module').then( m => m.ServicesPageModule)
+  },
+  {
+    path: 'book',
+    loadChildren: () => import('./book/book.module').then( m => m.BookPageModule)
+  },
+  {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
 ];
 @NgModule({
   imports: [

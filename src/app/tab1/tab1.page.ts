@@ -43,7 +43,7 @@ export class Tab1Page {
         return false;
       }
       this.productService.updateProductState(product);
-      this.router.navigate(['book', product.ProductSlug]);
+      this.router.navigate(['book']);
     } else {
       this.bookingService.updateBookingState({
         BookingId: '',
@@ -61,7 +61,7 @@ export class Tab1Page {
         BookingItems: []
       });
       this.productService.updateProductState(product);
-      this.router.navigate(['book', product.ProductSlug]);
+      this.router.navigate(['book']);
     }
 
   }

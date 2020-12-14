@@ -1,7 +1,7 @@
 export const CUSTOMER = 'Customer';
 export const ADMIN = 'Admin';
 export const SYSTEM = 'System';
-export const ZOWEH = 'zoweh';
+export const ZOWEH = 'hairgicia';
 
 
 export const SEND_EMAIL_RESET_PASSWORD  = 'https://zoweh.co.za/api/api/email/email-reset-password-link.php';
