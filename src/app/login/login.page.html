@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="holder">
+    <h1>
+      Please login to book.
+    </h1>
+    <div class="form-item">
+      <label for="name">Email</label>
+      <input type="text" [(ngModel)]="user.Email" placeholder="e.g. john.mnisi@gmail.com">
+    </div>
+  
+    <div class="form-item">
+      <label for="name">Password</label>
+      <input type="password" [(ngModel)]="user.Password" placeholder="e.g. john.mnisi@gmail.com">
+    </div>
+  
+  
+  
+  
+  
+    <button mat-button class="mat-primary" [disabled]="!user.Email || !user.Password" type="button" (click)="Login()">
+      Login
+    </button>
+  
+  
+
+
+    <span class="link" (click)="doreg()">
+      Sigin up.
+    </span>
+  
+  </div>
+
+
+
+</ion-content>

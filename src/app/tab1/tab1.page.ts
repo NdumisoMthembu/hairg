@@ -38,10 +38,10 @@ export class Tab1Page {
   }
   view(product: Product) {
     if (this.bookingService.currentBookingValue) {
-      if (this.bookingService.currentBookingValue.BookingItems.find(x => x.ServiceId === product.ProductId)) {
-        alert(`product already booked`);
-        return false;
-      }
+      // if (this.bookingService.currentBookingValue.BookingItems.find(x => x.ServiceId === product.ProductId)) {
+      //   alert(`product already booked`);
+      //   return false;
+      // }
       this.productService.updateProductState(product);
       this.router.navigate(['book']);
     } else {

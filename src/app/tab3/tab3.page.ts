@@ -25,26 +25,14 @@ export class Tab3Page {
 
   ngOnInit() {
     this.user = this.accountService.currentUserValue;
+    this.accountService.user.subscribe(data => {
+      if (data) {
+        this.user = data;
+      }
+    })
     if (!this.user) {
-      this.user = {
-        UserId: '',
-        CompanyId: 'hairgicia',
-        UserType: 'Customer',
-        Name: '',
-        Surname: '',
-        Email: '',
-        PhoneNumber: '',
-        Password: 'notset',
-        Dp: '',
-        CreateUserId: 'hairgicia',
-        ModifyUserId: 'hairgicia',
-        StatusId: '1',
-        UserToken: ''
-      };
-      this.heading = 'Sign up';
-
+      this.router.navigate([`login`]);
     }
-
   }
 
   public uploadFile = (files: FileList) => {
@@ -63,20 +51,7 @@ export class Tab3Page {
     });
   }
 
-  save() {
-    if (this.user.UserId && this.user.UserId.length > 5) {
-      this.userService.updateUser(this.user);
-      alert('Customer account updated');
-      this.back();
-    }
-    else {
-      this.userService.add(this.user).subscribe(data => {
-        console.log(data);
-        alert('Customer account created');
-        this.back();
-      });
-    }
-  }
+
   back() {
     this.router.navigate([``]);
   }
@@ -91,26 +66,6 @@ export class Tab3Page {
   doreg() {
     this.isSignUp = true;
     this.heading = 'Sign up'
-  }
-  Login() {
-    this.showLoader = true;
-    this.accountService.login({ email: this.user.Email, password: this.user.Password }).subscribe(user => {
-      if (user && user.UserId) {
-        this.error = '';
-        this.accountService.updateUserState(user);
-        if (user.UserType === ADMIN) {
-          this.router.navigate(['dashboard']);
-        } else {
-          this.router.navigate(['']);
-        }
-        this.showLoader = false;
-      }
-      else {
-        let err: any = user;
-        this.error = err + '. , Or contact us if you did not get the mail.' || 'your email or password is incorrect';
-        this.showLoader = false;
-      }
-    });
   }
 
   logout() {

@@ -116,9 +116,7 @@ export class BookPage implements OnInit {
   }
   book() {
     if (!this.user) {
-      this.showModal = true;
-      this.modalHeading = 'Please enter your details';
-      return;
+      this.booking.UserId = 'pending';
     }
     this.booking.UserId = this.user.UserId;
     this.booking.CreateUserId = this.user.UserId;
@@ -143,18 +141,17 @@ export class BookPage implements OnInit {
   }
 
   addToCart() {
-    if (!this.user) {
-      this.showModal = true;
-      this.modalHeading = 'Please enter your details';
-      return;
-    }
     if (this.product && this.booking) {
       this.booking.BookingItems.push(this.bookingItem);
       this.booking.TotalAmount += Number(this.product.RegularPrice);
       this.bookingService.updateBookingState(this.booking);
       this.product.IsBooked = true;
       this.productService.updateProductState(this.product);
-      this.addedToCart();
+      if (this.booking.UserId === 'pending') {
+        this.router.navigate(['login']);
+      } else {
+        this.addedToCart();
+      }
     }
   }
 
@@ -181,8 +178,7 @@ export class BookPage implements OnInit {
         this.updateTimeSlotCurrentCapacity(this.selectedTime, 1);
         this.booking.BookingId = data.BookingId;
         this.bookingService.updateBookingState(this.booking);
-        alert('Your booking was successful')
-        this.router.navigate(['bookings']);
+        this.router.navigate(['checkout']);
       }
     });
   }

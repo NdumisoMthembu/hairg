@@ -1,6 +1,10 @@
 @import './home-container';
 @import './inputs';
 
+#background-content{
+background: $cloud;
+}
+
 .main {
   background: $cloud;
   padding: 0;
@@ -669,4 +673,49 @@ span.date {
   color: $white;
   display: block;
   z-index: 1000;
+}
+
+.holder{
+  background: #fff;
+  padding: 1em;
+  margin: 1em;
+  border-radius: .5em;
+
+  input, .input{
+    background: $cloud;
+    color: $black;
+    margin-bottom: 2em;
+    display: block;
+    padding: .5em 1em;
+    width: 100%;
+    border-radius: .4em;
+    border: none;
+  }
+
+  label{
+    color: $black;
+    font-size: .8em;
+    font-weight: 600;
+  }
+
+  button{
+    border-radius: .4em;
+    margin: 1.5em 0;
+    padding: .8em;
+    color: $pop;
+
+  }
+
+  h1{
+    color: $black;
+    text-align: center;
+  }
+
+  .link{
+    display: block;
+    text-align: center;
+    color:$info;
+    background: $white;
+    font-style: normal;
+  }
 }

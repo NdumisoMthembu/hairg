@@ -83,16 +83,7 @@
   
   
   <div class="overlay" *ngIf="showModal" (click)="closeModal()"></div>
-  <div class="mosdal" *ngIf="showModal">
-    <div class="close" (click)="closeModal()">
-
-      {{modalHeading}}
-    </div>
   
-    <div class="body">
-      <app-sign-up-modal (userLoggedInDone)="userLoggedInDone($event)"></app-sign-up-modal>
-    </div>
-  </div>
   
   <div *ngIf="showSuccess" class="success-modal">
 

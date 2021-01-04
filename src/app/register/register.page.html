@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="holder">
+    <div class="form-item">
+      <label for="name">Customer Name *</label>
+      <input type="text" [(ngModel)]="user.Name" maxlength="20" placeholder="e.g. John">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Customer Surname</label>
+      <input type="text" [(ngModel)]="user.Surname" maxlength="20" placeholder="e.g. Mnisi">
+    </div>
+    <div class="form-item">
+      <label for="name">Phone Number</label>
+      <input type="tel" [(ngModel)]="user.PhoneNumber" maxlength="13" placeholder="e.g. 0840010100">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Customer Email</label>
+      <input type="text" [(ngModel)]="user.Email" maxlength="30" placeholder="e.g. john@gmail.com">
+    </div>
+
+    <div class="form-item">
+      <label for="name">Password</label>
+      <input type="password" [(ngModel)]="user.Password" maxlength="20" placeholder="**********">
+    </div>
+
+
+    <div class="form-item">
+      <div class="upload-preview">
+        <div class="upload">
+          <input type="file" #file placeholder="Choose file" multiple (change)="uploadFile(file.files)"
+            style="display:none;">
+          <button mat-button class="btn-uplaod" (click)="file.click()">
+            📷 Profile Picture
+          </button>
+        </div>
+        <div class="preview">
+          <img *ngIf="user.Dp" [src]="user.Dp" alt="">
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <button mat-button class="mat-primary" [disabled]="!user.Name" type="button" (click)="save()">
+      Save your details
+    </button>
+
+    <span class="link" (click)="dologin()">
+      Login
+    </span>
+
+  </div>
+</ion-content>

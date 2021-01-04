@@ -15,15 +15,6 @@
   </ion-header>
   <div class="main-list" *ngIf="products">
 
-    <div class="heading">
-      <h4 *ngIf="note">
-        <b>Note: </b>{{note}}
-      </h4>
-
-      <p>
-        Please choose a package and book now.
-      </p>
-    </div>
     <div class="all-items">
 
       <div class="list-items" *ngFor="let item of products" (click)="view(item)">

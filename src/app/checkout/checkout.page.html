@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="holder">
+    <h1>
+      Please login to book.
+    </h1>
+    <div class="form-item">
+      <label for="name">Card No</label>
+      <input type="text" [(ngModel)]="card" placeholder="1125 1225 21125 12512">
+    </div>
+  
+    <div class="form-item">
+      <label for="name">SCV</label>
+      <input type="password" [(ngModel)]="scv" placeholder="215">
+    </div>
+  
+  
+  
+  
+  
+    <button mat-button class="mat-primary" [disabled]="!card || !scv" type="button" (click)="Pay()">
+      Pay now
+    </button>
+  
+  
+
+
+    <span class="link" (click)="doreg()">
+      Sigin up.
+    </span>
+  
+  </div>
+
+</ion-content>
