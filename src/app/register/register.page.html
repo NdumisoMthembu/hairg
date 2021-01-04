@@ -17,7 +17,7 @@
     </div>
     <div class="form-item">
       <label for="name">Phone Number</label>
-      <input type="tel" [(ngModel)]="user.PhoneNumber" maxlength="13" placeholder="e.g. 0840010100">
+      <input type="tel" [(ngModel)]="user.PhoneNumber" maxlength="13" (keyup)="checkNo()" placeholder="e.g. 0840010100">
     </div>
 
     <div class="form-item">

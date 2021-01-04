@@ -110,5 +110,13 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['']);
   }
 
+  checkNo() {
+    if (this.user.PhoneNumber && this.user.PhoneNumber.length) {
+      if (isNaN(this.user.PhoneNumber[this.user.PhoneNumber.length - 1])) {
+        this.user.PhoneNumber = this.user.PhoneNumber.substring(0, this.user.PhoneNumber.length - 1);
+      }
+    }
+  }
+
 
 }

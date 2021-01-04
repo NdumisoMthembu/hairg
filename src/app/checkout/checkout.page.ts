@@ -37,6 +37,7 @@ export class CheckoutPage implements OnInit {
       if (data && data.BookingId) {
         this.booking.BookingId = data.BookingId;
         this.bookingService.updateBookingState(null);
+        alert('Payment was successful')
         this.router.navigate(['bookings']);
       }
     });
